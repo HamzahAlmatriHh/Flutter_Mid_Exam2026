@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>اختبارات فلاتر - تطبيقات الموبايل</title>
+
+    <!-- PWA Support -->
+    <meta name="theme-color" content="#0a0e1a" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <canvas id="stars-canvas"></canvas>
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+
+    <div class="wrapper">
+        <header class="header">
+
+            <h1>تطبيقات الموبايل (Flutter)</h1>
+            <p>المستوى الثالث - الترم الثاني - اختبارات تفاعلية</p>
+            <div class="credits">
+                <span>إعداد وتجميع: حمزه المطري</span>
+                <a href="https://t.me/Eng_Hamzah_Almatri" target="_blank" class="tg-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram"
+                        width="20">
+                    @Eng_Hamzah_Almatri
+                </a>
+            </div>
+        </header>
+
+        <div class="search-container">
+            <input type="text" class="search-box" id="search-input" placeholder="ابحث عن سؤال أو معلومة..."
+                oninput="handleSearch()">
+        </div>
+
+        <!-- MAIN GRID -->
+        <div class="lecture-grid" id="lecture-grid">
+            <!-- JS will populate this -->
+        </div>
+    </div>
+
+    <!-- MODAL FOR QUIZ -->
+    <div id="quiz-modal" class="modal">
+        <div class="modal-content">
+            <div class="close-btn" onclick="closeModal()">&times;</div>
+            <div class="modal-header">
+                <div class="header-row">
+                    <button id="btn-back-selection" class="back-btn" onclick="backToSelection()" style="display:none;">
+                        &#8594; رجوع
+                    </button>
+                    <h2 class="modal-title" id="modal-title">Lecture Title</h2>
+                </div>
+                <!-- Disclaimer Note -->
+                <div id="quiz-disclaimer" class="quiz-disclaimer" style="display:none;">
+                    <div class="disclaimer-content">
+                        ⚠️ <strong>تنويه:</strong> نظراً لضيق الوقت، لم يتم التأكد من صحة جميع الحلول بنسبة 100%. إذا
+                        وجدت أي خطأ، يرجى إرسال ملاحظة للتصحيح عبر التليجرام:
+                        <a href="https://t.me/Eng_Hamzah_Almatri" target="_blank" class="disclaimer-link">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="TG"
+                                width="16" style="vertical-align:middle; margin-left:4px;">
+                            @Eng_Hamzah_Almatri
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mini-scoreboard">
+                    <span class="mini-score-item">السؤال: <span id="m-q-num">1</span>/<span
+                            id="m-total">10</span></span>
+                    <span class="mini-score-item" style="color:var(--correct)">صحيح: <span
+                            id="m-correct">0</span></span>
+                    <span class="mini-score-item" style="color:var(--wrong)">خطأ: <span id="m-wrong">0</span></span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="m-progress" style="width:0%"></div>
+                </div>
+            </div>
+
+            <div class="modal-body" id="modal-body">
+                <!-- Question Card Goes Here -->
+                <div id="quiz-container"></div>
+
+                <div class="quiz-nav">
+                    <button class="btn-nav" id="btn-prev" onclick="prevQ()" disabled>السابق</button>
+                    <button class="btn-nav" id="btn-next" onclick="nextQ()">التالي</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOASTS -->
+    <div class="toast" id="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
