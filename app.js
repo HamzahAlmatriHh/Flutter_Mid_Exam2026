@@ -111,7 +111,13 @@ document.addEventListener('DOMContentLoaded', () => {
     lectures.forEach(lec => {
         const card = document.createElement('div');
         card.className = 'lecture-card';
-        card.onclick = () => openQuiz(lec.id);
+        card.onclick = () => {
+            if (['3', '4', '5', '6', '7', '8', '9', '10'].includes(lec.id)) {
+                showAlertModal();
+            } else {
+                openQuiz(lec.id);
+            }
+        };
         card.innerHTML = `
        <div class="card-icon">📚</div>
        <div class="card-title">${lec.title}</div>
@@ -406,3 +412,14 @@ function showToast(m, t) {
     function d() { x.clearRect(0, 0, w, h); s.forEach(p => { x.beginPath(); x.arc(p.x, p.y, p.r, 0, 7); x.fillStyle = '#fff'; x.fill(); }); requestAnimationFrame(d); }
     window.onresize = i; i(); d();
 })();
+
+/* =============================================
+   ALERT MODAL LOGIC (New)
+============================================= */
+function showAlertModal() {
+    document.getElementById('alert-modal').style.display = 'block';
+}
+
+function closeAlertModal() {
+    document.getElementById('alert-modal').style.display = 'none';
+}
